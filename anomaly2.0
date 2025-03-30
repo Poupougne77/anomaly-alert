@@ -1,0 +1,87 @@
+<html>
+<head>
+    <title>Alerte Système</title>
+    <style>
+        body {
+            background-color: black;
+            color: red;
+            text-align: center;
+            font-size: 30px;
+            font-family: Arial, sans-serif;
+            animation: clignotement 0.5s infinite alternate;
+        }
+        h1 {
+            font-size: 50px;
+            font-weight: bold;
+            text-shadow: 5px 5px 10px red;
+            animation: tremblement 0.1s infinite alternate;
+        }
+        @keyframes clignotement {
+            from { background-color: black; }
+            to { background-color: red; }
+        }
+        @keyframes tremblement {
+            from { transform: translateX(-5px); }
+            to { transform: translateX(5px); }
+        }
+        #console {
+            width: 80%;
+            height: 200px;
+            background-color: black;
+            color: green;
+            font-family: monospace;
+            border: 2px solid green;
+            padding: 10px;
+            overflow: hidden;
+            text-align: left;
+            margin: 20px auto;
+        }
+    </style>
+    <script>
+        function afficherAlerte() {
+            alert("🚨 Téléphone piraté ! L'Anomaly a frappé !");
+            setTimeout(afficherAlerte, 3000);
+        }
+
+        function jouerSon() {
+            var audio = new Audio('https://www.myinstants.com/media/sounds/alarm.mp3');
+            audio.loop = true;
+            audio.play();
+        }
+
+        function afficherConsole() {
+            let consoleDiv = document.getElementById("console");
+            let lignes = [
+                "[WARNING] Intrusion détectée...",
+                "[ERROR] Système compromis...",
+                "[SYSTEM] Tentative de récupération...",
+                "[FATAL ERROR] Échec de la récupération...",
+                "[ALERT] Envoi des données en cours...",
+                "[CRITICAL] Anomaly.exe a été activé...",
+                "[SHUTDOWN] Téléphone bloqué dans 10s..."
+            ];
+            let index = 0;
+            setInterval(function() {
+                if (index < lignes.length) {
+                    consoleDiv.innerHTML += lignes[index] + "<br>";
+                    index++;
+                } else {
+                    consoleDiv.innerHTML = "";
+                    index = 0;
+                }
+            }, 2000);
+        }
+
+        window.onload = function() {
+            afficherAlerte();
+            jouerSon();
+            afficherConsole();
+        };
+
+        window.onbeforeunload = function() {
+            return "⚠️ Quitter cette page pourrait endommager votre appareil !";
+        };
+    </script>
+</head>
+<body>
+    <h
